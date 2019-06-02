@@ -19,8 +19,8 @@ namespace Etapa1
                 new Curso { Nombre = "301", TipoJornada = TiposJornada.Mañana }
             };
 
-            escuela.Cursos.Add(new Curso{Nombre = "102", TipoJornada = TiposJornada.Tarde});
-            escuela.Cursos.Add(new Curso{Nombre = "202", TipoJornada = TiposJornada.Tarde});
+            escuela.Cursos.Add(new Curso { Nombre = "102", TipoJornada = TiposJornada.Tarde });
+            escuela.Cursos.Add(new Curso { Nombre = "202", TipoJornada = TiposJornada.Tarde });
 
             var otraColeccion = new List<Curso>{
                 new Curso { Nombre = "302", TipoJornada = TiposJornada.Tarde },
@@ -30,21 +30,25 @@ namespace Etapa1
 
             escuela.Cursos.AddRange(otraColeccion);
 
-            Predicate<Curso> miAlgoritmo = Predicado;
-            escuela.Cursos.RemoveAll(miAlgoritmo);
+            /* escuela.Cursos.RemoveAll(delegate (Curso curObj)
+                                    {
+                                        return curObj.Nombre == "301"
+                                    }); */
+            
+            escuela.Cursos.RemoveAll((curObj) => curObj.Nombre == "301");
 
             WriteLine(escuela);
             ImprimirCursosEscuela(escuela);
         }
 
-        private static bool Predicado(Curso obj) => obj.Nombre == "301";
+        //private static bool Predicado(Curso obj) => obj.Nombre == "301";
 
         private static void ImprimirCursosEscuela(Escuela escuela)
         {
             WriteLine("======================================");
             WriteLine("Cursos de la escuela: " + escuela.Nombre);
             WriteLine("======================================");
-            
+
             //EL SIGNO DE ? VERIFICA PRIMERO QUE ESCUELA NO SE NULL
             if (escuela?.Cursos != null)
             {
