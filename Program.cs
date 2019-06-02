@@ -1,5 +1,6 @@
 ﻿using System;
 using CoreEscuela.Entidades;
+using static System.Console;
 
 namespace Etapa1
 {
@@ -11,42 +12,29 @@ namespace Etapa1
             escuela.Pais = "Chile";
             escuela.TipoEscuela = 0;
 
-            var cursos = new Curso[3];
-
-            cursos[0] = new Curso() { Nombre = "101" };
-
-            var curso2 = new Curso()
-            {
-                Nombre = "201"
+            escuela.Cursos = new Curso[]{
+                new Curso { Nombre = "101" },
+                new Curso { Nombre = "201" },
+                new Curso { Nombre = "301" }
             };
 
-            cursos[1] = curso2;
-
-            cursos[2] = new Curso { Nombre = "301" };
-
-            Console.WriteLine(escuela);
-            Console.WriteLine("===============");
-
-            ImprimirCursos(cursos);
-            Console.WriteLine("===============");
-            ImprimirCursosForEach(cursos);
+            WriteLine(escuela);
+            ImprimirCursosEscuela(escuela);
         }
 
-        private static void ImprimirCursosForEach(Curso[] cursos)
+        private static void ImprimirCursosEscuela(Escuela escuela)
         {
-            foreach (var curso in cursos)
+            WriteLine("======================================");
+            WriteLine("Cursos de la escuela: " + escuela.Nombre);
+            WriteLine("======================================");
+            
+            //EL SIGNO DE ? VERIFICA PRIMERO QUE ESCUELA NO SE NULL
+            if (escuela?.Cursos != null)
             {
-                Console.WriteLine($"Curso: {curso.Nombre}, ID: {curso.UniqueId}");
-            }
-        }
-
-        private static void ImprimirCursos(Curso[] cursos)
-        {
-            int i = 0;
-            while (i < cursos.Length)
-            {
-                Console.WriteLine($"Curso: {cursos[i].Nombre}, ID: {cursos[i].UniqueId}");
-                i++;
+                foreach (var curso in escuela.Cursos)
+                {
+                    WriteLine($"Curso: {curso.Nombre}, ID: {curso.UniqueId}");
+                }
             }
         }
     }
