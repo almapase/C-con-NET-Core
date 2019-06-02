@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace CoreEscuela.Entidades
 {
-    class Escuela
+    public class Escuela
     {
         public string Nombre { get; set; }
         public int AnioCreacion { get; set; }
@@ -12,11 +12,11 @@ namespace CoreEscuela.Entidades
         public List<Curso> Cursos { get; set; }
 
         public Escuela (string nombre, int anio) => (Nombre, AnioCreacion) = (nombre, anio);
-        public Escuela (string nombre, int anio, string pais = "", string ciudad = "")
+        public Escuela (string nombre, int anio, string pais = "", string ciudad = "", TiposEscuela tipoEscuela = 0)
         {
-            (Nombre, AnioCreacion, Pais, Ciudad)
+            (Nombre, AnioCreacion, Pais, Ciudad, TipoEscuela)
              = 
-            (nombre, anio, pais, ciudad);
+            (nombre, anio, pais, ciudad, tipoEscuela);
         }
         
         // SOBRE ESCRITURAS DE METODOS
