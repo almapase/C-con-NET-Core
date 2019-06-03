@@ -16,6 +16,9 @@ namespace CoreEscuela
             WriteLine(engine.Escuela);
             ImprimirCursosEscuela(engine.Escuela);
 
+            var listaObjetos = engine.GetObjetosEscuelas();
+
+            /*
             Printer.DibujarLinea(20);
             Printer.WriteTitle("Pruebas de Polifomrfismo");
 
@@ -45,11 +48,11 @@ namespace CoreEscuela
             WriteLine($"Alumno: {alumnoTest.GetType()}");
             
             //GENERA ERROR EN TIEMPO DE EJECUCIÓN
-            /* alumnoTest = (Alumno) objDummy;
+             alumnoTest = (Alumno) objDummy;
             Printer.WriteTitle("AlumnoTest");
             WriteLine($"Alumno: {alumnoTest.Nombre}");
             WriteLine($"Alumno: {alumnoTest.UniqueId}");
-            WriteLine($"Alumno: {alumnoTest.GetType()}"); */
+            WriteLine($"Alumno: {alumnoTest.GetType()}"); 
 
             var evaluacion = new Evaluacion(){Nombre = "Evaluacion 1", Nota=4.5f};
             Printer.WriteTitle("evaluacion");
@@ -64,8 +67,21 @@ namespace CoreEscuela
             WriteLine($"Alumno: {ob.UniqueId}");
             WriteLine($"Alumno: {ob.GetType()}");
 
-            // GENERA ERROR EN TIEMPO DE EJECUCIÓN
-            // alumnoTest = (Alumno)(ObjetoEscuelaBase)evaluacion;
+            //GENERA ERROR EN TIEMPO DE EJECUCIÓN
+            alumnoTest = (Alumno)(ObjetoEscuelaBase)evaluacion;
+
+            //COMO EVITAR ERRORES EN TIEMPO DE EJECUCIÓN
+            ob = evaluacion;  //ob es de tipo Evaluacion
+            if (ob is Alumno)
+            {
+                Alumno alumnoRecuperado = (Alumno)ob;
+            }
+
+            //SI NO LO PUEDE CONVERTIR DE VUELVE NULL
+            Alumno alumnoRecuperado2 = ob as Alumno; */
+
+
+
 
 
         }
