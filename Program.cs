@@ -15,9 +15,61 @@ namespace CoreEscuela
 
             WriteLine(engine.Escuela);
             ImprimirCursosEscuela(engine.Escuela);
+
+            Printer.DibujarLinea(20);
+            Printer.WriteTitle("Pruebas de Polifomrfismo");
+
+            var alumnoTest = new Alumno { Nombre = "Claire UnderWood" };
+
+            Printer.WriteTitle("AlumnoTest");
+            WriteLine($"Alumno: {alumnoTest.Nombre}");
+            WriteLine($"Alumno: {alumnoTest.UniqueId}");
+            WriteLine($"Alumno: {alumnoTest.GetType()}");
+
+            ObjetoEscuelaBase ob = alumnoTest;
+            Printer.WriteTitle("ObjetoEscuelaBase");
+            WriteLine($"Alumno: {ob.Nombre}");
+            WriteLine($"Alumno: {ob.UniqueId}");
+            WriteLine($"Alumno: {ob.GetType()}");
+
+            var objDummy = new ObjetoEscuelaBase() { Nombre = "Frank Underwood" };
+            Printer.WriteTitle("bjDummy");
+            WriteLine($"Alumno: {objDummy.Nombre}");
+            WriteLine($"Alumno: {objDummy.UniqueId}");
+            WriteLine($"Alumno: {objDummy.GetType()}");
+
+            alumnoTest = (Alumno) ob;
+            Printer.WriteTitle("AlumnoTest");
+            WriteLine($"Alumno: {alumnoTest.Nombre}");
+            WriteLine($"Alumno: {alumnoTest.UniqueId}");
+            WriteLine($"Alumno: {alumnoTest.GetType()}");
+            
+            //GENERA ERROR EN TIEMPO DE EJECUCIÓN
+            /* alumnoTest = (Alumno) objDummy;
+            Printer.WriteTitle("AlumnoTest");
+            WriteLine($"Alumno: {alumnoTest.Nombre}");
+            WriteLine($"Alumno: {alumnoTest.UniqueId}");
+            WriteLine($"Alumno: {alumnoTest.GetType()}"); */
+
+            var evaluacion = new Evaluacion(){Nombre = "Evaluacion 1", Nota=4.5f};
+            Printer.WriteTitle("evaluacion");
+            WriteLine($"Alumno: {evaluacion.Nombre}");
+            WriteLine($"Alumno: {evaluacion.UniqueId}");
+            WriteLine($"Alumno: {evaluacion.Nota}");
+            WriteLine($"Alumno: {alumnoTest.GetType()}");
+
+            ob = evaluacion;
+            Printer.WriteTitle("ObjetoEscuelaBase evaluacion");
+            WriteLine($"Alumno: {ob.Nombre}");
+            WriteLine($"Alumno: {ob.UniqueId}");
+            WriteLine($"Alumno: {ob.GetType()}");
+
+            // GENERA ERROR EN TIEMPO DE EJECUCIÓN
+            // alumnoTest = (Alumno)(ObjetoEscuelaBase)evaluacion;
+
+
         }
 
-        //private static bool Predicado(Curso obj) => obj.Nombre == "301";
 
         private static void ImprimirCursosEscuela(Escuela escuela)
         {
