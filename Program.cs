@@ -23,7 +23,7 @@ namespace CoreEscuela
         {
             Printer.WriteTitle("Cursos de la escuela: " + escuela.Nombre);
 
-            //EL SIGNO DE ? VERIFICA PRIMERO QUE ESCUELA NO SE NULL
+            //EL SIGNO DE ? VERIFICA PRIMERO, QUE ESCUELA NO SE NULL
             if (escuela?.Cursos != null)
             {
                 foreach (var curso in escuela.Cursos)
