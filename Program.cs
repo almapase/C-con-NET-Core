@@ -17,7 +17,12 @@ namespace CoreEscuela
             WriteLine(engine.Escuela);
             ImprimirCursosEscuela(engine.Escuela);
 
-            var listaObjetos = engine.GetObjetosEscuelas();
+            var listaObjetos = engine.GetObjetosEscuelas( 
+                out int conteoEvaluaciones,
+                out int conteoAlumnos,
+                out int conteoAsignaturas,
+                out int conteoCursos
+            );
 
             /// Filtramos la lista de objetas que implementen la interfaz Ilugar.
             var listaIlugar = from obj in listaObjetos
