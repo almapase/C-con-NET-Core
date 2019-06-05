@@ -31,6 +31,29 @@ namespace CoreEscuela
 
             //engine.Escuela.LimpiarLugar();
 
+            Dictionary<int, string> diccionario = new Dictionary<int, string>();
+
+            diccionario.Add(10, "Almapase");
+            diccionario.Add(432, "Lorem Ipsum");
+
+            foreach (var keyValPair in diccionario)
+            {
+                WriteLine($"Key: {keyValPair.Key}, Value: {keyValPair.Value}");
+            }
+
+            Printer.DibujarLinea();
+            WriteLine(diccionario[432]);
+
+            Printer.DibujarLinea();
+            diccionario[0] = "Otro Lorem Ipsum";
+            WriteLine(diccionario[0]);
+
+            Printer.WriteTitle("OTRO DICCIONARIO");
+            var dic = new Dictionary<string, string>();
+            dic["Luna"] = "Cuerpo celeste que gira alrededor de la Tierra";
+            WriteLine(dic["Luna"]);
+
+
         }
 
 
