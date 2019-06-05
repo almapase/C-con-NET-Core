@@ -24,9 +24,7 @@ namespace CoreEscuela
                    listaObj.AddRange(alumno.Evaluaciones); 
                 }
             }
-
             return listaObj;
-
         }
 
         public EscuelaEngine()
@@ -35,7 +33,7 @@ namespace CoreEscuela
         }
         public void Inicializador()
         {
-            Escuela = new Escuela("Mi Escuela", 2010, ciudad: "Santiago", pais: "Chile", tipoEscuela: TiposEscuela.Primaria);
+            Escuela = new Escuela("Mi Escuela 2019 con Net Core", 2010, ciudad: "Santiago", pais: "Chile", tipoEscuela: TiposEscuela.Primaria);
             CargarCursos();
             CargarAsignaturas();
             CargarAlumnos();

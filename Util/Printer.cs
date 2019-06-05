@@ -4,7 +4,7 @@ namespace CoreEscuela.Util
 {
     public static class Printer
     {
-        public static void DibujarLinea(int size)
+        public static void DibujarLinea(int size=10)
         {
             WriteLine("".PadLeft(size, '='));
         }
