@@ -19,7 +19,7 @@ namespace CoreEscuela
 
         }
          /// SOBRECARGA QUE NO PIDE PARAMETROS DE SALIDA, SIN ESCRIBIR EL METODO DE NUEVO
-         public List<ObjetoEscuelaBase> GetObjetosEscuelas(
+         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas(
             bool traeEvaluaciones = true,
             bool traeAlumnos = true,
             bool traeAsignaturas = true,
@@ -29,7 +29,7 @@ namespace CoreEscuela
             return GetObjetosEscuelas(out int dummy, out dummy, out dummy, out dummy);
         }
          /// SOBRECARGA CON SOLO UN PARAMETRO DE SALIDA, SIN ESCRIBIR EL METODO DE NUEVO
-         public List<ObjetoEscuelaBase> GetObjetosEscuelas(
+         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas(
             out int conteoEvaluaciones,
             bool traeEvaluaciones = true,
             bool traeAlumnos = true,
@@ -39,7 +39,7 @@ namespace CoreEscuela
         {
             return GetObjetosEscuelas(out conteoEvaluaciones, out int dummy, out dummy, out dummy);
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuelas(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas(
             out int conteoEvaluaciones,
             out int conteoAlumnos,
             out int conteoAsignaturas,
@@ -77,7 +77,7 @@ namespace CoreEscuela
                     }
                 }
             }
-            return listaObj;
+            return listaObj.AsReadOnly();
         }
         #region Metodos de Carga
         private void CargarAlumnos()
