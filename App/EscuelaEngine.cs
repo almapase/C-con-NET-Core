@@ -8,7 +8,16 @@ namespace CoreEscuela
     public sealed class EscuelaEngine
     {
         public Escuela Escuela { get; set; }
+        public EscuelaEngine(){}
+        public void Inicializador()
+        {
+            Escuela = new Escuela("Mi Escuela 2019 con Net Core", 2010, ciudad: "Santiago", pais: "Chile", tipoEscuela: TiposEscuela.Primaria);
+            CargarCursos();
+            CargarAsignaturas();
+            CargarAlumnos();
+            CargarEvaluaciones();
 
+        }
         public List<ObjetoEscuelaBase> GetObjetosEscuelas()
         {
             var listaObj = new List<ObjetoEscuelaBase>();
@@ -26,21 +35,7 @@ namespace CoreEscuela
             }
             return listaObj;
         }
-
-        public EscuelaEngine()
-        {
-
-        }
-        public void Inicializador()
-        {
-            Escuela = new Escuela("Mi Escuela 2019 con Net Core", 2010, ciudad: "Santiago", pais: "Chile", tipoEscuela: TiposEscuela.Primaria);
-            CargarCursos();
-            CargarAsignaturas();
-            CargarAlumnos();
-            CargarEvaluaciones();
-
-        }
-
+        #region Metodos de Carga
         private void CargarAlumnos()
         {
             foreach (var curso in Escuela.Cursos)
@@ -48,7 +43,6 @@ namespace CoreEscuela
                 curso.Alumnos = (GenerarAlumnos(20));
             }
         }
-
         private void CargarAsignaturas()
         {
             foreach (var curso in Escuela.Cursos)
@@ -62,7 +56,6 @@ namespace CoreEscuela
                 curso.Asignaturas = (ListaAsignaturas);
             }
         }
-
         private void CargarEvaluaciones()
         {
             var random = new Random();
@@ -88,21 +81,6 @@ namespace CoreEscuela
                 }
             }
         }
-
-        private List<Alumno> GenerarAlumnos(int cantidadAlumno)
-        {
-            string[] nombre1 = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás" };
-            string[] apellido1 = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
-            string[] nombre2 = { "Freddy", "Anabel", "Rick", "Murty", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
-
-            var listaAlumnos = from n1 in nombre1
-                               from n2 in nombre2
-                               from a1 in apellido1
-                               select new Alumno { Nombre = $"{n1} {n2} {a1}" };
-
-            return listaAlumnos.OrderBy((alumno) => alumno.UniqueId).Take(cantidadAlumno).ToList();
-        }
-
         private void CargarCursos()
         {
             Escuela.Cursos = new List<Curso>{
@@ -116,5 +94,19 @@ namespace CoreEscuela
                 new Curso { Nombre = "402", TipoJornada = TiposJornada.Tarde }
             };
         }
+        private List<Alumno> GenerarAlumnos(int cantidadAlumno)
+        {
+            string[] nombre1 = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás" };
+            string[] apellido1 = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
+            string[] nombre2 = { "Freddy", "Anabel", "Rick", "Murty", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
+
+            var listaAlumnos = from n1 in nombre1
+                               from n2 in nombre2
+                               from a1 in apellido1
+                               select new Alumno { Nombre = $"{n1} {n2} {a1}" };
+
+            return listaAlumnos.OrderBy((alumno) => alumno.UniqueId).Take(cantidadAlumno).ToList();
+        }
+        #endregion
     }
 }
