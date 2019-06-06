@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreEscuela.Entidades;
+using CoreEscuela.Util;
 
 namespace CoreEscuela
 {
     public sealed class EscuelaEngine
     {
         public Escuela Escuela { get; set; }
-        public EscuelaEngine(){}
+        public EscuelaEngine() { }
         public void Inicializador()
         {
             Escuela = new Escuela("Mi Escuela 2019 con Net Core", 2010, ciudad: "Santiago", pais: "Chile", tipoEscuela: TiposEscuela.Primaria);
@@ -18,24 +19,98 @@ namespace CoreEscuela
             CargarEvaluaciones();
 
         }
-         /// SOBRECARGA QUE NO PIDE PARAMETROS DE SALIDA, SIN ESCRIBIR EL METODO DE NUEVO
-         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas(
-            bool traeEvaluaciones = true,
-            bool traeAlumnos = true,
-            bool traeAsignaturas = true,
-            bool traeCursos = true
+
+        public void ImprimirDicionario(
+            Dictionary<MyKeys, IEnumerable<ObjetoEscuelaBase>> dic,
+            bool imprEval = false,
+            bool imprEsc = false,
+            bool imprAl = false,
+            bool imprAsg = false,
+            bool imprCur = false
         )
+        {
+            foreach (var obj in dic)
+            {
+                Printer.WriteTitle(obj.Key.ToString());
+                foreach (var value in obj.Value)
+                {
+                    if (value is Evaluacion)
+                    {
+                        if (imprEval)
+                            Console.WriteLine(value);
+                    }
+                    else if (value is Escuela)
+                    {
+                        if (imprEsc)
+                            Console.WriteLine("Escuela: " + value);
+                    }
+                    else if (value is Alumno)
+                    {
+                        if (imprAl)
+                            Console.WriteLine("Alumno: " + value.Nombre);
+                    }
+                    else if (value is Asignatura)
+                    {
+                        if (imprAsg)
+                            Console.WriteLine("Asignatura: " + value.Nombre);
+                    }
+                    else if (value is Curso)
+                    {
+                        if (imprCur)
+                            Console.WriteLine("Curso: " + value.Nombre);
+                    }
+                    else
+                    {
+                        Console.WriteLine(value);
+                    }
+                }
+            }
+        }
+        public Dictionary<MyKeys, IEnumerable<ObjetoEscuelaBase>> GetOjetosEscuelaDiccionario()
+        {
+            var dic = new Dictionary<MyKeys, IEnumerable<ObjetoEscuelaBase>>();
+
+            dic.Add(MyKeys.Escuela, new[] { Escuela });
+            dic.Add(MyKeys.Curso, Escuela.Cursos);
+
+            var listatmpEva = new List<Evaluacion>();
+            var listatmpAl = new List<Alumno>();
+            var listatmpAsi = new List<Asignatura>();
+            foreach (var curso in Escuela.Cursos)
+            {
+                listatmpAsi.AddRange(curso.Asignaturas);
+                listatmpAl.AddRange(curso.Alumnos);
+
+                foreach (var alumno in curso.Alumnos)
+                {
+                    listatmpEva.AddRange(alumno.Evaluaciones);
+                }
+            }
+
+            dic.Add(MyKeys.Evaluacion, listatmpEva);
+            dic.Add(MyKeys.Asignatura, listatmpAsi);
+            dic.Add(MyKeys.Alumno, listatmpAl);
+            return dic;
+        }
+
+        /// SOBRECARGA QUE NO PIDE PARAMETROS DE SALIDA, SIN ESCRIBIR EL METODO DE NUEVO
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas(
+           bool traeEvaluaciones = true,
+           bool traeAlumnos = true,
+           bool traeAsignaturas = true,
+           bool traeCursos = true
+       )
         {
             return GetObjetosEscuelas(out int dummy, out dummy, out dummy, out dummy);
         }
-         /// SOBRECARGA CON SOLO UN PARAMETRO DE SALIDA, SIN ESCRIBIR EL METODO DE NUEVO
-         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas(
-            out int conteoEvaluaciones,
-            bool traeEvaluaciones = true,
-            bool traeAlumnos = true,
-            bool traeAsignaturas = true,
-            bool traeCursos = true
-        )
+        /// SOBRECARGA CON SOLO UN PARAMETRO DE SALIDA, SIN ESCRIBIR EL METODO DE NUEVO
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas(
+           out int conteoEvaluaciones,
+           bool traeEvaluaciones = true,
+           bool traeAlumnos = true,
+           bool traeAsignaturas = true,
+           bool traeCursos = true
+       )
         {
             return GetObjetosEscuelas(out conteoEvaluaciones, out int dummy, out dummy, out dummy);
         }
@@ -55,7 +130,7 @@ namespace CoreEscuela
             conteoAlumnos = 0;
             var listaObj = new List<ObjetoEscuelaBase>();
             listaObj.Add(Escuela);
-            if(traeCursos)
+            if (traeCursos)
                 listaObj.AddRange(Escuela.Cursos);
 
             conteoCursos = Escuela.Cursos.Count;
@@ -63,17 +138,17 @@ namespace CoreEscuela
             {
                 conteoAsignaturas += curso.Asignaturas.Count;
                 conteoAlumnos += curso.Alumnos.Count;
-                if(traeAsignaturas)
+                if (traeAsignaturas)
                     listaObj.AddRange(curso.Asignaturas);
-                if(traeAlumnos)
+                if (traeAlumnos)
                     listaObj.AddRange(curso.Alumnos);
 
-                if(traeEvaluaciones)
+                if (traeEvaluaciones)
                 {
                     foreach (var alumno in curso.Alumnos)
                     {
                         listaObj.AddRange(alumno.Evaluaciones);
-                        conteoEvaluaciones += alumno.Evaluaciones.Count; 
+                        conteoEvaluaciones += alumno.Evaluaciones.Count;
                     }
                 }
             }
