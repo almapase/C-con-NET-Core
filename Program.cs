@@ -14,7 +14,14 @@ namespace CoreEscuela
             var engine = new EscuelaEngine();
             engine.Inicializador();
 
-            WriteLine(engine.Escuela);
+            WriteLine("BIENVENIDOS A LA ESCUELA");
+
+            var reporteador = new Reporteador(engine.GetOjetosEscuelaDiccionario());
+            var evalList = reporteador.GetListaEvaluaciones();
+            var asigEavalList = reporteador.GetListaAsignaturasEvaluadas();
+            var evalPorAsignaturasLista = reporteador.GetDiccionarioEvaluacionesPorAsignatura();
+
+            /* WriteLine(engine.Escuela);
             ImprimirCursosEscuela(engine.Escuela);
 
             var listaObjetos = engine.GetObjetosEscuelas( 
@@ -30,7 +37,7 @@ namespace CoreEscuela
                               select (ILugar)obj;
 
            var dictmp = engine.GetOjetosEscuelaDiccionario();
-           engine.ImprimirDicionario(dictmp, imprAl:true, imprCur:true);
+           engine.ImprimirDicionario(dictmp, imprAl:true, imprCur:true); */
 
 
         }
