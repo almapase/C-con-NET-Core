@@ -20,6 +20,14 @@ namespace CoreEscuela
             var evalList = reporteador.GetListaEvaluaciones();
             var asigEavalList = reporteador.GetListaAsignaturasEvaluadas();
             var evalPorAsignaturasLista = reporteador.GetDiccionarioEvaluacionesPorAsignatura();
+            var promedioPorAsignatura = reporteador.GetDiccionarioPromedioAlumnosPorAsignatura();
+            foreach (var item in promedioPorAsignatura)
+            {
+                foreach (var alumno in item.Value)
+                {
+                    
+                }
+            }
 
             /* WriteLine(engine.Escuela);
             ImprimirCursosEscuela(engine.Escuela);

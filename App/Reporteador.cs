@@ -60,21 +60,22 @@ namespace CoreEscuela
             return diccionario;
         }
 
-        public Dictionary<string, IEnumerable<object>> GetDiccionarioPromedioAlumnosPorAsignatura()
+        public Dictionary<string, IEnumerable<AlumnoPromedio>> GetDiccionarioPromedioAlumnosPorAsignatura()
         {
-            var diccionario = new Dictionary<string, IEnumerable<object>>();
+            var diccionario = new Dictionary<string, IEnumerable<AlumnoPromedio>>();
             var diccionariosEvaluacionesPorAsigatura = GetDiccionarioEvaluacionesPorAsignatura();
 
             foreach (var asignaturas in diccionariosEvaluacionesPorAsigatura)
             {
-                var dummy = from ev in asignaturas.Value
-                            select new 
-                            {
-                                ev.Alumno.UniqueId,
-                                alumnoNombre = ev.Alumno.Nombre,
-                                nombreEval = ev.Nombre,
-                                ev.Nota
-                            };
+                var promedioPorAlumno = from ev in asignaturas.Value
+                                        group ev by new { ev.Alumno.UniqueId, ev.Alumno.Nombre} into grupoEvalsAlumno
+                                        select new AlumnoPromedio
+                                        {
+                                            alumnoId = grupoEvalsAlumno.Key.UniqueId,
+                                            alumnoNmbre  = grupoEvalsAlumno.Key.Nombre, 
+                                            promedio = grupoEvalsAlumno.Average(evaluacion => evaluacion.Nota)
+                                        };
+                diccionario.Add(asignaturas.Key, promedioPorAlumno);
             }
 
             return diccionario;
