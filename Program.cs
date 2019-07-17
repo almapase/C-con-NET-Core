@@ -58,7 +58,16 @@ namespace CoreEscuela
                 try
                 {
                     newEval.Nota = float.Parse(notaString); 
+                    if (newEval.Nota < 0 || newEval.Nota > 5)
+                    {
+                        throw new ArgumentOutOfRangeException("La nota debe estar entre 0 y 5");
+                    }
                     WriteLine("La nota fue ingresada correctamente");   
+                }
+                catch (System.ArgumentOutOfRangeException ex)
+                {
+                    Printer.WriteTitle(ex.Message);
+                    WriteLine("Saliendo del programa");
                 }
                 catch (System.Exception)
                 {
