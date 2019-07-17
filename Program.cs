@@ -35,7 +35,8 @@ namespace CoreEscuela
 
             if (string.IsNullOrWhiteSpace(nombre))
             {
-                throw new ArgumentException("El valor del nombre es requerido");
+                Printer.WriteTitle("El valor del nombre es requerido");
+                WriteLine("Saliendo del programa");
             }
             else
             {
@@ -49,7 +50,8 @@ namespace CoreEscuela
 
             if (string.IsNullOrWhiteSpace(notaString))
             {
-                throw new ArgumentException("El valor de la nota es requerido");
+                Printer.WriteTitle("El valor de la nota es requerido");
+                WriteLine("Saliendo del programa");
             }
             else
             {
