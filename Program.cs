@@ -23,6 +23,40 @@ namespace CoreEscuela
             var promedioPorAsignatura = reporteador.GetDiccionarioPromedioAlumnosPorAsignatura();
             var TopPromedioAlumnosPorAsignatura = reporteador.GetTopPromedioAlumnosPorAsignatura(5);
 
+
+            Printer.WriteTitle("Captura de una evaluación por consola");
+            var newEval = new Evaluacion();
+            string nombre, notaString;
+            float nota;
+
+            WriteLine("Ingrese el nombre de la evaluación");
+            Printer.PresioneENTER();
+            nombre = ReadLine();
+
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                throw new ArgumentException("El valor del nombre es requerido");
+            }
+            else
+            {
+                newEval.Nombre = nombre.ToLower();
+                WriteLine("El nombre fue ingresado correctamente");
+            }
+
+            WriteLine("Ingrese la nota de la evaluación");
+            Printer.PresioneENTER();
+            notaString = ReadLine();
+
+            if (string.IsNullOrWhiteSpace(notaString))
+            {
+                throw new ArgumentException("El valor de la nota es requerido");
+            }
+            else
+            {
+                newEval.Nota = float.Parse(notaString);
+                WriteLine("La nota fue ingresada correctamente");
+            }
+
             /* WriteLine(engine.Escuela);
             ImprimirCursosEscuela(engine.Escuela);
 
