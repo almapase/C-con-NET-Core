@@ -55,8 +55,17 @@ namespace CoreEscuela
             }
             else
             {
-                newEval.Nota = float.Parse(notaString);
-                WriteLine("La nota fue ingresada correctamente");
+                try
+                {
+                    newEval.Nota = float.Parse(notaString); 
+                    WriteLine("La nota fue ingresada correctamente");   
+                }
+                catch (System.Exception)
+                {
+                    
+                    Printer.WriteTitle("El valor de la nota no es un número válido");
+                    WriteLine("Saliendo del programa");
+                } 
             }
 
             /* WriteLine(engine.Escuela);
