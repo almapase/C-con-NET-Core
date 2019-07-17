@@ -21,13 +21,7 @@ namespace CoreEscuela
             var asigEavalList = reporteador.GetListaAsignaturasEvaluadas();
             var evalPorAsignaturasLista = reporteador.GetDiccionarioEvaluacionesPorAsignatura();
             var promedioPorAsignatura = reporteador.GetDiccionarioPromedioAlumnosPorAsignatura();
-            foreach (var item in promedioPorAsignatura)
-            {
-                foreach (var alumno in item.Value)
-                {
-                    
-                }
-            }
+            var TopPromedioAlumnosPorAsignatura = reporteador.GetTopPromedioAlumnosPorAsignatura(5);
 
             /* WriteLine(engine.Escuela);
             ImprimirCursosEscuela(engine.Escuela);

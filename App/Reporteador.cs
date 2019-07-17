@@ -80,5 +80,22 @@ namespace CoreEscuela
 
             return diccionario;
         }
+
+        public Dictionary<string, IEnumerable<AlumnoPromedio>> GetTopPromedioAlumnosPorAsignatura(int top)
+        {
+            var diccionario = new Dictionary<string, IEnumerable<AlumnoPromedio>>();
+            var diccionarioPromedioAlumnosPorAsignatura = GetDiccionarioPromedioAlumnosPorAsignatura();
+
+            foreach (var alumnoPromedio in diccionarioPromedioAlumnosPorAsignatura )
+            {
+                var alumnosTop = (from ap in alumnoPromedio.Value
+                                    orderby ap.promedio descending
+                                    select ap).Take(top);
+
+                diccionario.Add(alumnoPromedio.Key, alumnosTop);
+            }
+
+            return  diccionario;
+        }
     }
 }
