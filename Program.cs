@@ -48,13 +48,13 @@ namespace CoreEscuela
             Printer.PresioneENTER();
             notaString = ReadLine();
 
-            if (string.IsNullOrWhiteSpace(notaString))
+            /* if (string.IsNullOrWhiteSpace(notaString))
             {
                 Printer.WriteTitle("El valor de la nota es requerido");
                 WriteLine("Saliendo del programa");
             }
             else
-            {
+            { */
                 try
                 {
                     newEval.Nota = float.Parse(notaString); 
@@ -75,7 +75,11 @@ namespace CoreEscuela
                     Printer.WriteTitle("El valor de la nota no es un número válido");
                     WriteLine("Saliendo del programa");
                 } 
-            }
+                finally
+                {
+                    Printer.WriteTitle("Finally se ejecuta siempre");
+                }
+           /*  } */
 
             /* WriteLine(engine.Escuela);
             ImprimirCursosEscuela(engine.Escuela);

@@ -686,30 +686,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AlexPacheco\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/alexpacheco/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AlexPacheco\\projects\\platzi\\dotnetcore\\Etapa1\\Etapa1.csproj",
+      "projectUniqueName": "/Users/alexpacheco/Proyectos-git/Platzi/C-con-NET-Core/Etapa1.csproj",
       "projectName": "Etapa1",
-      "projectPath": "C:\\Users\\AlexPacheco\\projects\\platzi\\dotnetcore\\Etapa1\\Etapa1.csproj",
-      "packagesPath": "C:\\Users\\AlexPacheco\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AlexPacheco\\projects\\platzi\\dotnetcore\\Etapa1\\obj\\",
+      "projectPath": "/Users/alexpacheco/Proyectos-git/Platzi/C-con-NET-Core/Etapa1.csproj",
+      "packagesPath": "/Users/alexpacheco/.nuget/packages/",
+      "outputPath": "/Users/alexpacheco/Proyectos-git/Platzi/C-con-NET-Core/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\AlexPacheco\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/alexpacheco/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
